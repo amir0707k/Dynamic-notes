@@ -9,7 +9,7 @@ function InputComponent({ notes, setNotes }) {
   const [isHidden, setIsHidden] = useState(true);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
-
+  
   const ref = useRef(null);
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);

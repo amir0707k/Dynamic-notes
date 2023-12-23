@@ -8,7 +8,7 @@ import BackToTop from "./Components/BackToTop";
 function App() {
  
   const localStorageArray = JSON.parse(localStorage.getItem("notes")) || [];
-   const [notes, setNotes] = useState(localStorageArray);
+  const [notes, setNotes] = useState(localStorageArray);
   console.log(localStorageArray);
   const [searchQuery, setSearchQuery] = useState("");
   console.log(searchQuery);

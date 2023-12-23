@@ -4,6 +4,8 @@ import "./styles.css";
 import { handleSearch } from "../../functions/handleSearch";
 import { motion } from "framer-motion";
 function ListComponent({ searchQuery, notes, setNotes }) {
+
+
   const [bgColor, setBgColor] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
   useEffect(() => {
@@ -12,7 +14,7 @@ function ListComponent({ searchQuery, notes, setNotes }) {
 
   return (
     <div className="mainpage-grid">
-      {filteredNotes.map((note, i) => {
+      {filteredNotes.map((note) => {
         return (
           <Card
             note={note}

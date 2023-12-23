@@ -17,9 +17,7 @@ function Header({setSearchQuery}) {
     const handleClickOutside = (e) => {
         if(!ref.current.contains(e.target)){
             setIsClicked(false);
-            
         }else{
-            
             setIsClicked(true);
         }
     }

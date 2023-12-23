@@ -1,7 +1,11 @@
 export const handleSave = (notes, setNotes, title, note, setTitle, setNote) => {
   
-  
-    setNotes([
+    if(note.trim()==="" && title.trim() ===""){
+      setTitle("Enter some title");
+      setNote("Enter some description");
+      return
+    }else{
+      setNotes([
       {
         title: title,
         note: note,
@@ -11,6 +15,8 @@ export const handleSave = (notes, setNotes, title, note, setTitle, setNote) => {
       },
       ...notes,
     ]);
+    }
+    
   
   
   setTitle("");
