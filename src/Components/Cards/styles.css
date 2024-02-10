@@ -92,6 +92,7 @@
 
 .note, .title{
     word-wrap: break-word;
+    text-align: left;
 }
 
 .color-palette{

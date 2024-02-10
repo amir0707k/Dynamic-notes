@@ -9,6 +9,13 @@
     padding: 2.5rem 2rem;
 }
 
+.search-parent{
+    display: flex;
+    align-items: center;
+    align-items: center;
+    gap: 0.7rem;
+
+}
 .left{
     display: flex;
     color: var(--white);
@@ -28,15 +35,15 @@
 
 .right{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     min-width: 350px;
     width: 350px;
     background-color: var(--midgrey);
-    padding: 0.75rem 1.2rem;
-    border-radius: 12px;
+    padding: 0.55rem 1.2rem;
+    border-radius: 24px;
     transition: all 0.3s;
-    
+    margin-bottom: 0px;
 }
 .right:hover{
     background-color: var(--grey);
@@ -63,6 +70,15 @@ letter-spacing: 1.2px;
 
 }
 
+.logout{
+    border-radius: 24px;
+    box-shadow: 4px 4px 12px rgba(255, 255, 255, 0.226);
+    background-color: var(--yellow);
+    color:var(--lightblack);
+}
+
+
+
 .notes-heading{
     color: rgb(251,188,4);
 }
@@ -76,6 +92,12 @@ font-family: 'Roboto', sans-serif;
 
 }
 
+@media only screen and (max-width: 968px){
+    .clicked{
+    width: 450px;
+    transition: all 0.3s ease;
+}
+}
 
 @media only screen and (max-width: 830px){
     .clicked{
@@ -84,10 +106,19 @@ font-family: 'Roboto', sans-serif;
 }
 }
 
-@media only screen and (max-width: 730px){
+@media only screen and (max-width: 800px){
     .clicked{
     width: 300px;
     transition: all 0.3s ease;
+}
+}
+
+
+@media only screen and (max-width: 700px){
+    .clicked, .right{
+    width: 250px;
+    transition: all 0.3s ease;
+    min-width: 100px;
 }
 }
 
@@ -98,6 +129,13 @@ font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
+.logout{
+    margin: 0.15rem;
+    font-size: 10px;
+    padding: 0.55rem 1rem ;
+
+}
+
 .search-input::placeholder{
     color:var(--white);
     font-size: 0.7rem;
@@ -115,7 +153,7 @@ font-family: 'Roboto', sans-serif;
 
 }
 
-@media only screen and (max-width: 375px){
+@media only screen and (max-width: 475px){
     .clicked, .right{
     
     width: 150px;
@@ -123,6 +161,34 @@ font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
+}
+
+@media only screen and (max-width: 375px){
+    .clicked, .right{
+    width: 100px;
+    min-width: 70px;
+    font-size: 10px;
+    padding: 0.1rem 1rem !important;
+    transition: all 0.3s ease;
+}
+.search-parent{
+    margin:1rem 0rem;
+}
+
+.logout{
+    font-size: 10px;
+    padding: 0.35rem 1.5rem;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search-input::placeholder{
     color:var(--white);
     font-size: 0.7rem;

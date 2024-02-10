@@ -8,13 +8,16 @@ import { handleDelete } from "../../functions/handleDelete";
 import { handleUpdate } from "../../functions/handleUpdate";
 import { handleColorUpdate } from "../../functions/handleColorUpdate";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux"; 
 
-function Card({ note, setNotes, id }) {
+function Card({ note }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(note.title);
   const [noteTitle, setNoteTitle] = useState(note.note);
   const [deleting, setDeleting] = useState(false);
   const [isSelectingColor, setIsSelectingColor] = useState(false);
+  console.log(note)
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -22,7 +25,7 @@ function Card({ note, setNotes, id }) {
         <div className="pop-up">
           <p>Are you sure you want to delete this note ?</p>
           <div className="delete-confirmation-buttons">
-            <button onClick={() => handleDelete(note, setNotes)}>Yes</button>
+            <button onClick={() => handleDelete(note, dispatch)}>Yes</button>
             <button onClick={() => setDeleting(false)}>No</button>
           </div>
         </div>
@@ -51,11 +54,11 @@ function Card({ note, setNotes, id }) {
                 onClick={() =>
                   handleUpdate(
                     note,
-                    setNotes,
                     title,
                     noteTitle,
                     setIsEditing,
-                    note.background
+                    note.background,
+                    dispatch
                   )
                 }
               />
@@ -98,36 +101,35 @@ function Card({ note, setNotes, id }) {
               <div className="color-palette">
                 <span
                   className="color red"
-                  value="red"
                   title="red"
-                  onClick={() => handleColorUpdate(note, setNotes, "red")}
+                  onClick={() => handleColorUpdate(note, "red", dispatch)}
                 ></span>
                 <span
                   className="color peach"
                   title="peach"
                   onClick={() =>
-                    handleColorUpdate(note, setNotes, "var(--peach)")
+                    handleColorUpdate(note, "var(--peach)", dispatch)
                   }
                 ></span>
                 <span
                   className="color sand"
                   title="sand"
                   onClick={() =>
-                    handleColorUpdate(note, setNotes, "var(--sand)")
+                    handleColorUpdate(note, "var(--sand)", dispatch)
                   }
                 ></span>
                 <span
                   className="color mint"
                   title="mint"
                   onClick={() =>
-                    handleColorUpdate(note, setNotes, "var(--mint)")
+                    handleColorUpdate(note, "var(--mint)", dispatch)
                   }
                 ></span>
                 <span
                   className="color sage"
                   title="sage"
                   onClick={() =>
-                    handleColorUpdate(note, setNotes, "var(--sage)")
+                    handleColorUpdate(note, "var(--sage)", dispatch)
                   }
                 ></span>
               </div>

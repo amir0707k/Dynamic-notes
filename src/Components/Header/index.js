@@ -4,25 +4,41 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.css";
 import { Tooltip } from "@mui/material";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { updateSearchQuery } from "../../features/noteSlice";
 
 
-function Header({setSearchQuery}) {
-    const [isClicked, setIsClicked] = useState(false);
-    const ref = useRef(null);
-
-    useEffect(() => {
-        document.addEventListener("click" , handleClickOutside)
-    }, [])
-    
-    const handleClickOutside = (e) => {
-        if(!ref.current.contains(e.target)){
-            setIsClicked(false);
-        }else{
-            setIsClicked(true);
-        }
+function Header({ isSignedIn, setIsSignedIn, newAccount }) {
+  const [isClicked, setIsClicked] = useState(false);
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+  }, []);
+const ref = useRef(null);
+  const handleClickOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setIsClicked(false);
+    } else {
+      setIsClicked(true);
     }
+  };
 
+  useEffect(() => {
+    if (isSignedIn) {
+      ref.current = document.querySelector(".right");; // Assign the ref when isSignedIn is true
+    } else {
+      ref.current = null; // Set ref to null when isSignedIn is false
+    }
+  }, [isSignedIn]);
 
+    const logout = (e) => {
+      console.log("clicked");
+      localStorage.removeItem("token");
+
+      setIsSignedIn(false);
+    };
+  console.log(isSignedIn);
   return (
     <div className="header">
       <Tooltip title="Notes">
@@ -38,23 +54,35 @@ function Header({setSearchQuery}) {
           </p>
         </motion.div>
       </Tooltip>
-      <Tooltip title="Search by title or content">
-        <div
-          className={`right ${isClicked ? "clicked" : ""}`}
-          ref={ref}
-          // style={{ backgroundColor: "rgb(251,188,4, 0.8)" }}
+      <div
+        className="search-parent"
+        style={{ display: isSignedIn ? "flex" : "none" }}
+      >
+        <Tooltip title="Search by title or content">
+          <div className={`right ${isClicked ? "clicked" : ""}`} ref={ref}>
+            <SearchRoundedIcon
+              className="search-icon"
+              style={{ color: "white", fontSize: "1rem" }}
+            />
+            <input
+              placeholder="Search by title or content"
+              className="search-input"
+              onChange={(e) =>
+                dispatch(updateSearchQuery({ value: e.target.value }))
+              }
+            />
+          </div>
+        </Tooltip>
+        <button
+          className="logout"
+          value={isSignedIn}
+          onClick={() => {
+            logout();
+          }}
         >
-          <SearchRoundedIcon
-            className="search-icon"
-            style={{ color: "white", fontSize: "1rem" }}
-          />
-          <input
-            placeholder="Search by title or content"
-            className="search-input"
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-      </Tooltip>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
